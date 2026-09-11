@@ -74,36 +74,23 @@ Relational Database Management Systems (RDBMS) rely on SQL (Structured Query Lan
 
 ### 3. Products Table (Final State)
 
-| ProductID | ProductName | Price | Stock |
-| :--- | :--- | :--- | :--- |
-| 1 | Laptop | 55000.00 | 10 |
-| 2 | Wireless Mouse | 650.00 | 50 |
-| 4 | Headphones | 1800.00 | 25 |
-| 5 | USB Cable | 300.00 | 100 |
+<img width="473" height="171" alt="image" src="https://github.com/user-attachments/assets/6f7d17d3-84b2-4b51-8f45-85ec2b940117" />
+
 
 ### 4. OrderDetails Table
 
-| OrderDetailID | OrderID | ProductID | Quantity | SubTotal |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | 1 | 1 | 1 | 55000.00 |
-| 2 | 1 | 2 | 2 | 1300.00 |
-| 3 | 2 | 4 | 1 | 1800.00 |
-| 4 | 4 | 2 | 3 | 1950.00 |
-| 5 | 4 | 5 | 2 | 600.00 |
+<img width="477" height="168" alt="image" src="https://github.com/user-attachments/assets/d2815d1f-8c25-435c-ab0a-dfc3337befd5" />
+
 
 ### 5. Orders Summary Analytics
 
-| Highest Amount | Lowest Amount | Average Amount |
-| :--- | :--- | :--- |
-| 2500.00 | 600.00 | 1300.00 |
+<img width="425" height="74" alt="image" src="https://github.com/user-attachments/assets/54f4b4c8-393c-43d5-804b-52af165fa31b" />
+
 
 ### 6. Top 3 Best-Selling Products
 
-| ProductID | Total Ordered Quantity |
-| :--- | :--- |
-| 2 | 5 |
-| 5 | 2 |
-| 4 | 1 |
+<img width="226" height="122" alt="image" src="https://github.com/user-attachments/assets/3e0ab7ae-1b19-4dc6-9c6c-377b88e9f2c2" />
+
 
 ---
 
