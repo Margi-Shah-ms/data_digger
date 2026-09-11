@@ -349,32 +349,6 @@ In this project, SELECT is used for:
 
 ---
 
-# 📚 SQL Concepts Used in the Project
-
-## WHERE
-
-The WHERE clause is used to filter records based on a specific condition.
-
-It is used in the project for:
-
-- Finding a specific customer
-- Finding records for a specific order
-- Filtering orders
-- Filtering products
-- Applying conditions to data
-
----
-
-## BETWEEN
-
-The BETWEEN operator is used to filter values within a specified range.
-
-In this project, it is used for product price analysis.
-
-It helps identify products whose prices fall within a particular range.
-
----
-
 # 🗃️ Data Types Used
 
 The project uses different SQL data types according to the information being stored.
@@ -396,13 +370,7 @@ The project uses different SQL data types according to the information being sto
 
 ---
 
-# 📁 Project Structure
 
-```text
-DataDigger/
-│
-├── datadigger.sql
-└── README.md---
 
 ## Database Execution Output Tables
 
@@ -436,6 +404,14 @@ DataDigger/
 <img width="226" height="122" alt="image" src="https://github.com/user-attachments/assets/3e0ab7ae-1b19-4dc6-9c6c-377b88e9f2c2" />
 
 
+---
+# 📁 Project Structure
+
+```text
+DataDigger/
+│
+├── datadigger.sql
+└── README.md
 ---
 
 ## Conclusion
