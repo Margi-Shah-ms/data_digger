@@ -64,21 +64,13 @@ Relational Database Management Systems (RDBMS) rely on SQL (Structured Query Lan
 
 ### 1. Customers Table (Final State)
 
-| CustomerID | Name | Email | Address |
-| :--- | :--- | :--- | :--- |
-| 1 | Alice | alice@example.com | 123 Main St |
-| 2 | Bob | bob@example.com | 999 New Ville St |
-| 3 | Charlie | charlie@example.com | 789 Pine St |
-| 4 | Alice | alice.smith@example.com | 101 Maple St |
+<img width="611" height="178" alt="image" src="https://github.com/user-attachments/assets/4d08eb71-7b7b-48c4-a3bf-2e68c0984386" />
+
 
 ### 2. Orders Table (Final State)
 
-| OrderID | CustomerID | OrderDate | TotalAmount |
-| :--- | :--- | :--- | :--- |
-| 1 | 1 | 2023-10-01 | 1300.00 |
-| 2 | 1 | 2023-10-15 | 800.00 |
-| 4 | 4 | 2023-11-10 | 600.00 |
-| 5 | 1 | 2023-11-12 | 2500.00 |
+<img width="419" height="165" alt="image" src="https://github.com/user-attachments/assets/2882d6cb-3c5e-40cf-8aee-994e9a9ec861" />
+
 
 ### 3. Products Table (Final State)
 
