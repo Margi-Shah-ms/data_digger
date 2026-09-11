@@ -37,7 +37,7 @@ INSERT INTO Orders (OrderID,CustomerID, OrderDate, TotalAmount) VALUES
 (4,4, '2023-11-10', 600.00),
 (5,1, '2023-11-12', 2500.00);
 
-SELECT * FROM Orders where OrderID = 1;
+SELECT * FROM Orders where CustomerID = 1;
 
 UPDATE Orders 
 SET TotalAmount = 1300.00 
@@ -47,7 +47,7 @@ DELETE FROM Orders
 WHERE OrderID = 3;
 
 SELECT * FROM Orders 
-WHERE OrderDate >= '2026-08-11';
+WHERE OrderDate >= '2023-11-01';
 
 SELECT 
   MAX(TotalAmount) AS highestamount,
