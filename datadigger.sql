@@ -67,7 +67,7 @@ INSERT INTO Products (ProductID,ProductName, Price, Stock) VALUES
 (4, 'Headphones', 1800.00, 25),
 (5, 'USB Cable', 300.00, 100);
 
-SELECT * FROM Products; 
+SELECT * FROM Products 
 ORDER BY Price DESC;
 
 UPDATE Products 
