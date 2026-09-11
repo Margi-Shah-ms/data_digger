@@ -37,7 +37,7 @@ INSERT INTO Orders (OrderID,CustomerID, OrderDate, TotalAmount) VALUES
 (4,4, '2023-11-10', 600.00),
 (5,1, '2023-11-12', 2500.00);
 
-SELECT * FROM Orders;
+SELECT * FROM Orders where OrderID = 1;
 
 UPDATE Orders 
 SET TotalAmount = 1300.00 
@@ -99,7 +99,6 @@ INSERT INTO OrderDetails (OrderDetailID,OrderID, ProductID, Quantity, SubTotal) 
 (4, 4, 2, 3, 1950.00),
 (5, 4, 5, 2, 600.00);
 
-select * from OrderDetails;
 SELECT * FROM OrderDetails where OrderID = 1;
 
 SELECT SUM(SubTotal) AS totalrevenue 
