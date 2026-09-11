@@ -75,35 +75,35 @@ Relational Database Management Systems (RDBMS) rely on SQL (Structured Query Lan
 
 | OrderID | CustomerID | OrderDate | TotalAmount |
 | :--- | :--- | :--- | :--- |
-| 1 | 1 | 2023-10-01 | $1300.00 |
-| 2 | 1 | 2023-10-15 | $800.00 |
-| 4 | 4 | 2023-11-10 | $600.00 |
-| 5 | 1 | 2023-11-12 | $2500.00 |
+| 1 | 1 | 2023-10-01 | 1300.00 |
+| 2 | 1 | 2023-10-15 | 800.00 |
+| 4 | 4 | 2023-11-10 | 600.00 |
+| 5 | 1 | 2023-11-12 | 2500.00 |
 
 ### 3. Products Table (Final State)
 
 | ProductID | ProductName | Price | Stock |
 | :--- | :--- | :--- | :--- |
-| 1 | Laptop | $55000.00 | 10 |
-| 2 | Wireless Mouse | $650.00 | 50 |
-| 4 | Headphones | $1800.00 | 25 |
-| 5 | USB Cable | $300.00 | 100 |
+| 1 | Laptop | 55000.00 | 10 |
+| 2 | Wireless Mouse | 650.00 | 50 |
+| 4 | Headphones | 1800.00 | 25 |
+| 5 | USB Cable | 300.00 | 100 |
 
 ### 4. OrderDetails Table
 
 | OrderDetailID | OrderID | ProductID | Quantity | SubTotal |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | 1 | 1 | 1 | $55000.00 |
-| 2 | 1 | 2 | 2 | $1300.00 |
-| 3 | 2 | 4 | 1 | $1800.00 |
-| 4 | 4 | 2 | 3 | $1950.00 |
-| 5 | 4 | 5 | 2 | $600.00 |
+| 1 | 1 | 1 | 1 | 55000.00 |
+| 2 | 1 | 2 | 2 | 1300.00 |
+| 3 | 2 | 4 | 1 | 1800.00 |
+| 4 | 4 | 2 | 3 | 1950.00 |
+| 5 | 4 | 5 | 2 | 600.00 |
 
 ### 5. Orders Summary Analytics
 
 | Highest Amount | Lowest Amount | Average Amount |
 | :--- | :--- | :--- |
-| $2500.00 | $600.00 | $1300.00 |
+| 2500.00 | 600.00 | 1300.00 |
 
 ### 6. Top 3 Best-Selling Products
 
