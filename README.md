@@ -1,65 +1,408 @@
  video link: https://drive.google.com/file/d/1lvXxLDhA38hb7v3S8kfaXFPVxGXzRXyz/view?usp=sharing
-# DataDigger SQL Database Documentation
+# DataDigger — E-Commerce SQL Database Project
 
-## Introduction
+## 📌 Project Overview
 
-Relational Database Management Systems (RDBMS) rely on SQL (Structured Query Language) to define, manipulate, and analyze data across interconnected entities. This database model establishes an E-commerce system architecture consisting of four core tables: **Customers**, **Orders**, **Products**, and **OrderDetails**. It demonstrates the complete lifecycle of data management—from initial schema creation and data insertion to record updates, deletions, referential integrity management, and business analytics extraction.
+DataDigger is a relational database project developed using PostgreSQL.
 
----
+The project represents a basic e-commerce system that manages customer information, orders, products, and order details.
 
-## Core SQL Concepts & Theory
-
-### 1. Data Definition Language (DDL)
-* **`CREATE TABLE`**: Defines the structural schema of relational entities by declaring column names, data types (e.g., `INT`, `VARCHAR`, `DECIMAL`, `DATE`), and constraints.
-
-### 2. Data Manipulation Language (DML)
-* **`INSERT INTO`**: Adds new rows of data into existing database tables.
-* **`UPDATE`**: Modifies existing records based on specified filtering criteria.
-* **`DELETE`**: Permanently removes records that match specific conditions.
-
-### 3. Data Query Language (DQL)
-* **`SELECT`**: Retrieves data from one or more tables based on functional parameters.
-
-### 4. Database Integrity & Constraints
-* **Primary Key (`PRIMARY KEY`)**: Uniquely identifies each record within a table, ensuring no duplicate entries exist.
-* **Foreign Key (`FOREIGN KEY`)**: Maintains referential integrity by establishing parent-child relationships between tables (e.g., referencing `CustomerID` from `Customers` inside `Orders`).
-
-### 5. Data Filtering & Analytical Aggregations
-* **Conditional Filtering (`WHERE`, `BETWEEN`)**: Restricts returned rows using logical evaluations, price boundaries, or specific date ranges.
-* **Aggregate Functions (`SUM`, `AVG`, `MAX`, `MIN`, `COUNT`)**: Evaluates numerical columns to produce summary metrics like total revenue, average order value, max/min prices, and transaction counts.
-* **Grouping & Sorting (`GROUP BY`, `ORDER BY`, `LIMIT`)**: Organizes data into categorical subsets, orders results in ascending or descending sequence, and isolates top-performing records.
+The main purpose of this project is to understand relational database design and practice SQL operations such as creating tables, inserting data, updating records, deleting records, retrieving data, filtering data, and performing basic business analysis.
 
 ---
 
-## Script Operations & Query Explanations
+# 🗄️ Database Structure
 
-* **Customers Table Management:**
-  * Schema created to maintain customer profiles.
-  * Five initial customer records inserted.
-  * Address updated for `CustomerID = 2`.
-  * Inactive record removed where `CustomerID = 5`.
-  * Filtered query executed to fetch active records matching the name 'Alice'.
+The database contains four main tables:
 
-* **Orders Table Management:**
-  * Relational table created linking orders to customers via `CustomerID` as a Foreign Key.
-  * Five customer orders recorded with transaction amounts and dates.
-  * Total amount revised for `OrderID = 1` and canceled order (`OrderID = 3`) deleted.
-  * Statistical metrics calculated to find the maximum, minimum, and average order values.
+1. Customers
+2. Orders
+3. Products
+4. OrderDetails
 
-* **Products & Inventory Control:**
-  * Inventory table defined containing product names, prices, and stock counts.
-  * Products sorted in descending order based on unit price.
-  * Unit price updated for `ProductID = 2`.
-  * Out-of-stock items (`Stock = 0`) automatically purged from inventory.
-  * Price range query executed for items priced between $500 and $2000, along with queries identifying the highest and lowest-priced items.
+These tables are connected using Primary Keys and Foreign Keys.
 
-* **OrderDetails & Revenue Analytics:**
-  * Junction table established to map products to orders, tracking item quantities and calculated sub-totals.
-  * Line items queried for `OrderID = 1`.
-  * Total revenue generated across all sales computed using `SUM(SubTotal)`.
-  * Product sales performance aggregated using `GROUP BY` and sorted to output the top 3 best-selling products by quantity ordered.
+### Database Relationship
+
+Customers → Orders → OrderDetails ← Products
+
+- One customer can place multiple orders.
+- One order can contain multiple order-detail records.
+- One product can appear in multiple order-detail records.
+- OrderDetails acts as a connecting table between Orders and Products.
 
 ---
+
+# 📋 Tables and Their Contents
+
+## 1. Customers Table
+
+The Customers table stores basic information about customers.
+
+### Columns
+
+| Column | Data Type | Key | Description |
+|---|---|---|---|
+| CustomerID | INT | Primary Key | Unique identifier for each customer |
+| Name | VARCHAR(100) | — | Name of the customer |
+| Email | VARCHAR(100) | — | Email address of the customer |
+| Address | VARCHAR(255) | — | Address of the customer |
+
+### Table Purpose
+
+This table contains customer-related information and uniquely identifies each customer using CustomerID.
+
+---
+
+## 2. Orders Table
+
+The Orders table stores information about orders placed by customers.
+
+### Columns
+
+| Column | Data Type | Key | Description |
+|---|---|---|---|
+| OrderID | INT | Primary Key | Unique identifier for each order |
+| CustomerID | INT | Foreign Key | Identifies the customer who placed the order |
+| OrderDate | DATE | — | Date on which the order was placed |
+| TotalAmount | DECIMAL(10,2) | — | Total amount of the order |
+
+### Table Purpose
+
+This table contains information about customer orders.
+
+CustomerID connects each order to the customer who placed it.
+
+### Relationship
+
+Orders.CustomerID → Customers.CustomerID
+
+This represents a One-to-Many relationship because one customer can place multiple orders.
+
+---
+
+## 3. Products Table
+
+The Products table stores information about products available for sale.
+
+### Columns
+
+| Column | Data Type | Key | Description |
+|---|---|---|---|
+| ProductID | INT | Primary Key | Unique identifier for each product |
+| ProductName | VARCHAR(100) | — | Name of the product |
+| Price | DECIMAL(10,2) | — | Price of the product |
+| Stock | INT | — | Number of units available in stock |
+
+### Table Purpose
+
+This table contains product information, including product name, price, and available stock.
+
+Each product is uniquely identified using ProductID.
+
+---
+
+## 4. OrderDetails Table
+
+The OrderDetails table stores information about the individual products included in each order.
+
+It acts as a connecting table between the Orders and Products tables.
+
+### Columns
+
+| Column | Data Type | Key | Description |
+|---|---|---|---|
+| OrderDetailID | INT | Primary Key | Unique identifier for each order-detail record |
+| OrderID | INT | Foreign Key | Identifies the related order |
+| ProductID | INT | Foreign Key | Identifies the product included in the order |
+| Quantity | INT | — | Number of units of the product ordered |
+| SubTotal | DECIMAL(10,2) | — | Total amount for that product in the order |
+
+### Table Purpose
+
+This table contains details about which products were included in an order, how many units were ordered, and the subtotal generated by those products.
+
+### Relationships
+
+OrderDetails.OrderID → Orders.OrderID
+
+OrderDetails.ProductID → Products.ProductID
+
+This allows the database to connect orders with the products included in those orders.
+
+---
+
+# 🔑 Keys Used in the Database
+
+## Primary Key
+
+A Primary Key is a column that uniquely identifies each record in a table.
+
+A Primary Key:
+
+- Uniquely identifies each row
+- Cannot contain duplicate values
+- Cannot contain NULL values
+- Provides a unique identity to each record
+
+### Primary Keys Used
+
+| Table | Primary Key |
+|---|---|
+| Customers | CustomerID |
+| Orders | OrderID |
+| Products | ProductID |
+| OrderDetails | OrderDetailID |
+
+---
+
+## Foreign Key
+
+A Foreign Key is a column that creates a relationship between two tables.
+
+It references the Primary Key of another table.
+
+### Foreign Keys Used
+
+| Table | Foreign Key | References |
+|---|---|---|
+| Orders | CustomerID | Customers.CustomerID |
+| OrderDetails | OrderID | Orders.OrderID |
+| OrderDetails | ProductID | Products.ProductID |
+
+### Purpose of Foreign Keys
+
+Foreign Keys connect related tables and maintain referential integrity.
+
+For example:
+
+Orders.CustomerID → Customers.CustomerID
+
+This connects an order with the customer who placed that order.
+
+---
+
+# 🔗 Table Relationships
+
+### Customers → Orders
+
+One customer can have many orders.
+
+**Relationship: One-to-Many**
+
+### Orders → OrderDetails
+
+One order can have multiple order-detail records.
+
+**Relationship: One-to-Many**
+
+### Products → OrderDetails
+
+One product can appear in multiple order-detail records.
+
+**Relationship: One-to-Many**
+
+### Overall Structure
+
+Customers
+    │
+    │ CustomerID
+    ▼
+Orders
+    │
+    │ OrderID
+    ▼
+OrderDetails
+    ▲
+    │ ProductID
+    │
+Products
+
+---
+
+# 🧱 SQL Language Categories Used
+
+The project uses three important SQL language categories:
+
+1. DDL — Data Definition Language
+2. DML — Data Manipulation Language
+3. DQL — Data Query Language
+
+---
+
+# 1. DDL — Data Definition Language
+
+DDL stands for **Data Definition Language**.
+
+DDL is used to define and manage the structure of database objects such as tables.
+
+In simple words:
+
+**DDL defines the blueprint or structure of the database.**
+
+### DDL Used in This Project
+
+- CREATE TABLE
+
+### CREATE TABLE
+
+CREATE TABLE is used to create the four tables:
+
+- Customers
+- Orders
+- Products
+- OrderDetails
+
+While creating the tables, the project defines:
+
+- Column names
+- Data types
+- Primary Keys
+- Foreign Keys
+
+### Purpose
+
+DDL is responsible for creating and defining the structure of the database.
+
+---
+
+# 2. DML — Data Manipulation Language
+
+DML stands for **Data Manipulation Language**.
+
+DML is used to manage the actual data stored inside database tables.
+
+In simple words:
+
+**DML is used to add, modify, and remove data.**
+
+### DML Used in This Project
+
+- INSERT
+- UPDATE
+- DELETE
+
+### INSERT
+
+INSERT is used to add new records into the tables.
+
+Data is inserted into:
+
+- Customers
+- Orders
+- Products
+- OrderDetails
+
+**Purpose:** Adds new data to the database.
+
+### UPDATE
+
+UPDATE is used to modify existing records.
+
+In this project, UPDATE is used to modify:
+
+- Customer information
+- Order information
+- Product information
+
+**Purpose:** Changes existing data in the database.
+
+### DELETE
+
+DELETE is used to remove existing records.
+
+In this project, DELETE is used to remove unwanted records such as customers, orders, or out-of-stock products.
+
+**Purpose:** Removes data from the database.
+
+---
+
+# 3. DQL — Data Query Language
+
+DQL stands for **Data Query Language**.
+
+DQL is used to retrieve data from the database.
+
+In simple words:
+
+**DQL is used to read and retrieve information without modifying the stored data.**
+
+### DQL Used in This Project
+
+- SELECT
+
+### SELECT
+
+SELECT is used to retrieve information from tables.
+
+In this project, SELECT is used for:
+
+- Viewing complete tables
+- Finding specific customers
+- Filtering records
+- Viewing products
+- Viewing orders
+- Viewing order details
+- Performing analytical calculations
+
+**Purpose:** Retrieves information from the database.
+
+---
+
+# 📚 SQL Concepts Used in the Project
+
+## WHERE
+
+The WHERE clause is used to filter records based on a specific condition.
+
+It is used in the project for:
+
+- Finding a specific customer
+- Finding records for a specific order
+- Filtering orders
+- Filtering products
+- Applying conditions to data
+
+---
+
+## BETWEEN
+
+The BETWEEN operator is used to filter values within a specified range.
+
+In this project, it is used for product price analysis.
+
+It helps identify products whose prices fall within a particular range.
+
+---
+
+# 🗃️ Data Types Used
+
+The project uses different SQL data types according to the information being stored.
+
+| Data Type | Used For | Purpose |
+|---|---|---|
+| INT | IDs, Stock, Quantity | Stores whole numbers |
+| VARCHAR | Name, Email, Address, ProductName | Stores text values |
+| DATE | OrderDate | Stores dates |
+| DECIMAL(10,2) | Price, TotalAmount, SubTotal | Stores accurate decimal/currency values |
+
+# 🛠️ Tools and Technologies
+
+- **PostgreSQL** — Relational Database Management System used to create and manage the database
+- **pgAdmin 4** — Used to write, execute, and manage SQL queries
+- **SQL** — Language used to create, manipulate, retrieve, and analyze data
+- **Git** — Version control system
+- **GitHub** — Used to store and showcase the project
+
+---
+
+# 📁 Project Structure
+
+```text
+DataDigger/
+│
+├── datadigger.sql
+└── README.md---
 
 ## Database Execution Output Tables
 
